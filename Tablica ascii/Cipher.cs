@@ -1,35 +1,35 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tablica_ascii
+namespace Tablica_ascii // latwe przeniesienie do drugiego projektu
 {
-    class Cipher
+    class Cipher // tworzenie klasy Cipher
     {
-        public static string CaesarCypher(string text)
+        public static string CaesarCypher(string text) //tworzenie funckji 
         {
-            text = text.ToUpper().Replace(" ", "");
-            char[] charArray = text.ToCharArray();
-            string output = String.Empty;
-            foreach (char c in charArray)
+            text = text.ToUpper().Replace(" ", ""); // usuwanie spacji i zmiana wszystkiego na duze litery
+            char[] charArray = text.ToCharArray(); //tworzenie tablicy do pojedynczych znakow
+            string output = String.Empty; //to oznacza ze zaczynamy od niczego, czyli pustego stringu
+            foreach (char letter in charArray) // zmiana kazdej litery po kolei 
             {
-                int charValue = (int)c;
+                int charValue = (int)letter; // zamienia litere na liczbe by moc ja przesunac o 3 miejsca
                 charValue += 3;
                 if (charValue > 90)
                 {
                     charValue -= 26;
                 }
-                char result = (char)charValue;
-                output += result;
+                char result = (char)charValue; // zamienia liczbe spowrotem na litere
+                output += result; //dodaje pojedyncze litery do wyniku
             }
-            return output;
+            return output; // oddaje wynik po zakonczeniu petli
         }
         public static string DictionaryCaesar(string text) 
         { 
-        Dictionary<char, char> dict = new Dictionary<char, char>();
+        Dictionary<char, char> dict = new Dictionary<char, char>(); // tworzenie slownika Cezara
             dict.Add('A', 'D');
             dict.Add('B', 'E');
             dict.Add('C', 'F');
@@ -57,30 +57,14 @@ namespace Tablica_ascii
             dict.Add('Y', 'B');
             dict.Add('Z', 'C');
 
-
-            text = text.ToUpper().Replace(" ", "");
-
-
+            text = text.ToUpper().Replace(" ", ""); 
             char[] charArray = text.ToCharArray();
-
-
             string output = String.Empty;
-
-
-            foreach (char c in charArray)
-
-
+            foreach (char letter in charArray) // zamienia kazda litere na litere z mojego slownika Cezara
             {
-
-
-                output += dict[c];
-
-
+                output += dict[letter];
             }
-
-
             return output;
-   
         }   
         public static string GaderypolukiCipher(string text)
         {
@@ -113,32 +97,13 @@ namespace Tablica_ascii
             dict.Add('Z', 'Z');
 
             text = text.ToUpper().Replace(" ", "");
-
-
             char[] charArray = text.ToCharArray();
-
-
             string output = String.Empty;
-
-
-            foreach (char c in charArray)
-
-
+            foreach (char letter in charArray)
             {
-
-
-                output += dict[c];
-
-
+                output += dict[letter];
             }
-
-
             return output;
-
-
-
-
         } 
     }  
-    
 }
